@@ -1,0 +1,14 @@
+Insert into celink.tblLoanNotes (
+	INTSUBSERVICERLOANNUMBER,
+	CHRLOANNOTES,
+	DTMNOTEDATE,
+	CHRUSERID,
+	BLNPRIORITY)
+Select AccountNumber,
+	'Statement mailed to borrower ' || right(DatePrinted, length(DatePrinted) - 14),
+	current_timestamp,
+	'BATCH',
+	0
+from celink.tblstatementstatic
+where Loantype = 'EE'
+and Reserve5 = 'A863';
